@@ -30,4 +30,26 @@ class Solution {
             current = current.right;
         }
     }
+    
+    /*
+     * Iterative PreOrder traversal Binary Tree
+     */
+    public List<Integer> preorderTraversal(TreeNode root) {
+        Deque<TreeNode> stack = new ArrayDeque<TreeNode>();
+        List<Integer> res = new ArrayList<Integer>();
+        TreeNode current = root;
+        while (current!= null || !stack.isEmpty())
+        {
+            while (current!= null)
+            {
+                res.add(current.val);
+                stack.push(current);
+                current = current.left;
+            }
+            
+            current = stack.pop();
+            current = current.right;
+        }
+        return res;
+    }
 }
