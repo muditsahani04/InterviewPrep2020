@@ -30,10 +30,12 @@ public class SubSetSum {
 	               dp[i][j] = dp[i-1][j] || dp[i-1][j-nums[i]];
 	           }
 	       }
+	       if (dp[i][c-1] == true) // found the target sum
+	          return true;
 	   }
 	    
 	    
-	    return dp[r-1][c-1];
+	    return false;
 	    
 	}
 }
