@@ -1,31 +1,37 @@
 class Solution {
     public String longestPalindrome(String s) {
-      if (s.length() == 0 || s.length() ==1)
-          return s;
-      int start = 0;
-      int end = 0;
-      for (int i=0; i<s.length(); i++)
-      {
-        int len1 = expandAroundCenter(s,i,i);
-        int len2 = expandAroundCenter(s,i,i+1);
-        int len = Math.max(len1, len2);
-        if (len > end-start)
+        String res ="";
+        if (s.length() == 0 || s.length() == 1)
+            return s;
+            
+        char[] arr = s.toCharArray();
+        int max = 0;
+        int mid = 0;
+        for (int i=0; i<arr.length;i++)
         {
-          start = i - (len-1)/2;
-          end = i + len/2;
+            int len1 = expandAroundCenter(i, i, arr);
+            int len2 = expandAroundCenter(i, i+1, arr);
+            if (len1 > max || len2 > max)
+            {
+                mid = i;
+                max = Math.max(len1,len2);
+            }
+            
         }
-      }
-	     return s.substring(start, end+1);
+        
+         
+        return s.substring(mid- ((max-1)/2), mid+(max/2)+1 );
     }
-
-    private static int expandAroundCenter(String s, int left, int right)
+    
+    private int expandAroundCenter(int left, int right, char[] arr)
     {
-    	int L = left, R =right;
-    	while (L >=0 && R < s.length() && s.charAt(L) == s.charAt(R))
-    	{
-    		L --;
-    		R++;
-    	}
-    	return R-L-1;
+        int l = left;
+        int r = right;
+        while (l>=0 && r<arr.length && arr[l] == arr[r])
+        {
+            l--;r++;
+        }
+        
+        return r-l-1;
     }
 }
