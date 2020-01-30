@@ -36,14 +36,16 @@ public class LRUCache {
 	}
 
 	public int get(int key) {
-		Node res = cache.getOrDefault(key, new Node(-1,-1));
-		if (res.data != -1)
+		
+		if (cache.containsKey(key))
 		{
+			Node res = cache.get(key);
 			remove(res);
 			addTail(res);
+			return res.data;
 		}
 
-		return res.data;
+		return -1;
 	}
 
 	public void put(int key, int value) {
