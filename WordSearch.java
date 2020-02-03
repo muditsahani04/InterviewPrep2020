@@ -29,7 +29,10 @@ class Solution {
         if (word.charAt(index) == board[i][j] )
         {
             visited[i][j] = true;
-             res = dfs (board, visited, word, index+1, i+1, j) || dfs (board, visited, word, index+1, i, j+1) || dfs (board, visited, word, index+1, i-1, j) || dfs (board, visited, word, index+1, i, j-1);
+             res = dfs (board, visited, word, index+1, i+1, j) || 
+                 dfs (board, visited, word, index+1, i, j+1) || 
+                 dfs (board, visited, word, index+1, i-1, j) || 
+                 dfs (board, visited, word, index+1, i, j-1);
 
         }
         if (!res)
